@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.wcy.gen.mapper.UserprizeMapper" >
+
+    <resultMap id="BaseResultMap" type="org.wcy.gen.model.Userprize" >
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+        <result column="USERID" property="userid" jdbcType="VARCHAR" />
+        <result column="PRIZEID" property="prizeid" jdbcType="VARCHAR" />
+        <result column="PRIZETIME" property="prizetime" jdbcType="TIMESTAMP" />
+        <result column="STATE" property="state" jdbcType="VARCHAR" />
+        <result column="ISDELETE" property="isdelete" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        ID, USERID, PRIZEID, PRIZETIME, STATE, ISDELETE
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from userprize
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+        delete from userprize
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="org.wcy.gen.model.Userprize" >
+        insert into userprize (ID, USERID, PRIZEID, 
+            PRIZETIME, STATE, ISDELETE
+            )
+        values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{prizeid,jdbcType=VARCHAR}, 
+            #{prizetime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}, #{isdelete,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="org.wcy.gen.model.Userprize" >
+        insert into userprize
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                ID,
+            </if>
+            <if test="userid != null" >
+                USERID,
+            </if>
+            <if test="prizeid != null" >
+                PRIZEID,
+            </if>
+            <if test="prizetime != null" >
+                PRIZETIME,
+            </if>
+            <if test="state != null" >
+                STATE,
+            </if>
+            <if test="isdelete != null" >
+                ISDELETE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="userid != null" >
+                #{userid,jdbcType=VARCHAR},
+            </if>
+            <if test="prizeid != null" >
+                #{prizeid,jdbcType=VARCHAR},
+            </if>
+            <if test="prizetime != null" >
+                #{prizetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null" >
+                #{state,jdbcType=VARCHAR},
+            </if>
+            <if test="isdelete != null" >
+                #{isdelete,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="org.wcy.gen.model.Userprize" >
+        update userprize
+        <set >
+            <if test="userid != null" >
+                USERID = #{userid,jdbcType=VARCHAR},
+            </if>
+            <if test="prizeid != null" >
+                PRIZEID = #{prizeid,jdbcType=VARCHAR},
+            </if>
+            <if test="prizetime != null" >
+                PRIZETIME = #{prizetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null" >
+                STATE = #{state,jdbcType=VARCHAR},
+            </if>
+            <if test="isdelete != null" >
+                ISDELETE = #{isdelete,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="org.wcy.gen.model.Userprize" >
+        update userprize
+        set USERID = #{userid,jdbcType=VARCHAR},
+            PRIZEID = #{prizeid,jdbcType=VARCHAR},
+            PRIZETIME = #{prizetime,jdbcType=TIMESTAMP},
+            STATE = #{state,jdbcType=VARCHAR},
+            ISDELETE = #{isdelete,jdbcType=VARCHAR}
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+</mapper>
